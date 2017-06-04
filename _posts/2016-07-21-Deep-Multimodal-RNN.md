@@ -10,7 +10,7 @@ blog: true
 ---
 文章[^1]主要完成对于图像生成其内容描述，[项目主页](http://www.stat.ucla.edu/~junhua.mao/m-RNN.html),任务描述如下图所示：　　
 
-![img](../downloads/m-RNN/word_img.png)　  
+![img](/downloads/m-RNN/word_img.png)　  
 
 
 　
@@ -24,7 +24,7 @@ blog: true
 具体如下图所示：　　
 
 
-![mrnn](../downloads/m-RNN/mrnn.png)　　
+![mrnn](/downloads/m-RNN/mrnn.png)　　
 
 
 利用`embeding`将句子变成$$2D$$向量，在每个时间步输入一个单词，类似之前mnist操作，每行图片为一个时间步；而对于`CNN`部分，则将原始图片特征进行`tile`

@@ -81,10 +81,10 @@ Beam Search算法由于有beam size大小的限制，使得该算法只能得到
 
 值得一提的是，对于获取后继节点的顺序，如果是先进先出，则是广度优先；先进后出，则是深度优先。下面用个例子来感受下算法：　
 
-![beam](../downloads/algorithm/beam1.jpg)  
+![beam](/downloads/algorithm/beam1.jpg)  
 
 对于上图，假设搜索起始点为I, beam_size=1,那么搜索过程如下表所示：　　
-![beam](../downloads/algorithm/beam2.png)  
+![beam](/downloads/algorithm/beam2.png)  
 
 上表中如果使用不同的遍历方法会得到不同的搜索结果，详细看[这里](http://jhave.org/algorithms/graphs/beamsearch/beamsearch.shtml)
 

@@ -39,7 +39,7 @@ date: 2016-7-13
 如下图表示:  
 
 <div align=center>
-![三种矩阵分解比较](../downloads/NMF/NMF.jpg)
+![三种矩阵分解比较](/downloads/NMF/NMF.jpg)
 </div>
 上图的第一个方块为矩阵W，组成的图像。其中每一个小格为W的一列的19x19个元素重构而成的19x19的矩阵图像。第二个方块为H矩阵，其中红
 色表示负数，灰黑表示正数， 颜色程度表示大小。右边的图像只是V矩阵的一列的19x19个元素组成的一张原始脸。
@@ -51,52 +51,52 @@ date: 2016-7-13
 
 * cost function 1 -- Euclidean distance:  
 <div align=center>
-![欧式距离](../downloads/NMF/eld.gif)
+![欧式距离](/downloads/NMF/eld.gif)
 </div>  
 
 在此代价函数下得乘性更新法则有：
 
 <div align=center>
-![update1](../downloads/NMF/update1.gif)
+![update1](/downloads/NMF/update1.gif)
 </div>
 
 <div align=center>
-![update2](../downloads/NMF/update2.gif)
+![update2](/downloads/NMF/update2.gif)
 </div>
 
 在此代价函数下得加性更新法则有：
 
 <div align=center>
-![update_eld1](../downloads/NMF/update_eld1.gif)
+![update_eld1](/downloads/NMF/update_eld1.gif)
 </div>
 其中，步长为:  
 <div align=center>
-![eld_yita](../downloads/NMF/eld_yita.gif)
+![eld_yita](/downloads/NMF/eld_yita.gif)
 </div>
 
 * cost function 2 -- 分离度(divergence):  
 
 <div align=center>
-![diver](../downloads/NMF/diver.gif)
+![diver](/downloads/NMF/diver.gif)
 </div>
 在此代价函数下得乘性更新法则有：
 
 <div align=center>
-![update3](../downloads/NMF/update3.gif)
+![update3](/downloads/NMF/update3.gif)
 </div>
 
 <div align=center>
-![update4](../downloads/NMF/update4.gif)
+![update4](/downloads/NMF/update4.gif)
 </div>
 
 在此代价函数下得加性更新法则有：
 
 <div align=center>
-![diver_update](../downloads/NMF/diver_update.gif)
+![diver_update](/downloads/NMF/diver_update.gif)
 </div>
 其中，步长为:  
 <div align=center>
-![diver_yita](../downloads/NMF/diver_yita.gif)
+![diver_yita](/downloads/NMF/diver_yita.gif)
 </div>
 
 下面是基于欧氏距离的NMF乘性更新方法：

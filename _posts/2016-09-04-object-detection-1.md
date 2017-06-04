@@ -75,7 +75,7 @@ Out[11]: array([6, 6, 6])
 在寻找矩阵最大左上角坐标和最小右下角坐标时，利用`np.maximun()`的特性，如上例，1,4,5会被6代替，进而避免与别的窗口的对比。在计算覆盖区域面积时，
 同样的，使得面积不会存在小于０的情况，最后保留覆盖区域较小的box.(ps:没能理解indx+1时啥意思)  
 如下图:  
-![nms](../downloads/object_detection/NMS.png)  
+![nms](/downloads/object_detection/NMS.png)  
 
 
 

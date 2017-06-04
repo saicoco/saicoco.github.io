@@ -23,7 +23,7 @@ fully-connected layers， 这种能力便丢失了，因此使得网络识别能
 文章[^1]使用全局均值池化来避免过拟合，同时作者发现，即使在网络最后一层，仍然保留着明显的定位能力，而这使得作者提出了注意力模型。  
 如下图所示  
 
-![cnn_attention_1](../downloads/cnn_attention/cnn_attention_1.png)  
+![cnn_attention_1](/downloads/cnn_attention/cnn_attention_1.png)  
 
 利用注意力机制，网络成功的捕捉到了动作而不是人物本身，接下来，我们就着重 讲解网络的细节。  
 
@@ -31,7 +31,7 @@ fully-connected layers， 这种能力便丢失了，因此使得网络识别能
 
 文章提出了一种获取注意力的思路，如下图所示：  
 
-![cnn_attention_2](../downloads/cnn_attention/cnn_attention_2.png)  
+![cnn_attention_2](/downloads/cnn_attention/cnn_attention_2.png)  
 
 这里需要结合上图描述，CAM(class actication mapping)是通过GAP(global average pooling)得到的，CAM在feature map中对应的部分
 是图片区域中最具有区分性的部分，可以用来很好的区分类别。正如图所示，GAP的输入来自于卷积层的最后一层，而GAP输出的加权和作为最后的输出，
@@ -44,7 +44,7 @@ fully-connected layers， 这种能力便丢失了，因此使得网络识别能
 文章定义$$M_c{x, y} = \sum_k w_{k}^{c}f_{k}(x, y)$$为位置(x, y)处类别c的CAM，这样可以得到$$S_c = \sum_{x, y}M_{c}(x, y)$$，可以看出，
 $$M_{c}(x, y)$$直接表示空间位置(x, y)处的activation对于类别c的重要性。  
 
-![cnn_attention_3](../downloads/cnn_attention/cnn_attention_3.png)  
+![cnn_attention_3](/downloads/cnn_attention/cnn_attention_3.png)  
 
 如上图所示，是一些利用CAM得到的结果，可以看出，有一定效果。  
 
@@ -52,7 +52,7 @@ $$M_{c}(x, y)$$直接表示空间位置(x, y)处的activation对于类别c的重
 
 代码框架图：  
 
-![att_model](../downloads/cnn_attention/att_model2.png)  
+![att_model](/downloads/cnn_attention/att_model2.png)  
 
 文章思路可以理解为，利用最后一层卷积层和softmax的分类概率作乘积，即加权和，实现attention。show your code！  
 
@@ -218,9 +218,9 @@ all_score = model_history.history['val_acc']
 
 从北京回来发现自己不像以前爱嬉皮笑脸，不知道是不是一件好事，今天突然看到舍友发的我大一时候的照片，感触颇深啊，那会着装，动作。。。回不去了～那会怎么那么年轻。Too simple 啊！！上图。  
 
-![me_1](../downloads/cnn_attention/1.jpg)
-![me_2](../downloads/cnn_attention/2.jpg)  
-![me_3](../downloads/cnn_attention/3.jpg)  
+![me_1](/downloads/cnn_attention/1.jpg)
+![me_2](/downloads/cnn_attention/2.jpg)  
+![me_3](/downloads/cnn_attention/3.jpg)  
 
 
 ### Reference  

@@ -23,7 +23,7 @@ Faster RCNN较Fast RCNN的优势之处在于对rois的选取，主要模块可�
 
 整体流程图可以如下图所示：　　
 
-![image](../downloads/object_detection/faster_rcnn.png)  
+![image](/downloads/object_detection/faster_rcnn.png)  
 
 
 其中roi_pooling_layer已经在fast-RCNN中讲解，因此这里讲述剩余层的功能以及整个算法流程。

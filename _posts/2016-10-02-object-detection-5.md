@@ -10,13 +10,13 @@ data: 2016-10-02
 
 ### 写在前面的话　　
 十一假期没有出去玩，待实验室想多看看目标检测的论文和代码，用faster rcnn实现了人脸检测，进一步了解了如何制作pascal voc数据集格式，如下图所示：　　
-![fd1](../downloads/object_detection/yolo/fd1.png)  
+![fd1](/downloads/object_detection/yolo/fd1.png)  
 好吧，确实有点帅的一张脸，对于你那些比较小的人脸还是无法检测出来，原因可能和数据集有关系，数据集中没有多张人脸、小人脸的样本，因此对于大一点的人脸检测效果比较好。
 不管咋说，一趟流程可以走下来，可以训练自己想要检测的目标。今年十一不出去，踏实看论文，今天讲YOLO,ross二作，接下来就仔细讲讲它的细节。　　
 
 ## YOLO:You Only Look Once  
 如果说RCNN系列是将检测视为分类问题，那么YOLO和后面讲到的SSD则是将检测视为回归问题。下图为YOLO的简易框架:  
-![yolo](../downloads/object_detection/yolo/yolo)  
+![yolo](/downloads/object_detection/yolo/yolo)  
 由上图可以看到，yolo十分简单，输入一张图片，经CNN提取特征，直接得到类别，bbox,然后利用NMS得到最佳的框。　　
 
 ### Unified Detection  
@@ -35,7 +35,7 @@ Pr(class_{i}|object)*Pr(object)*IOU_{pred}^{truth}=Pr(class_{i})*IOU_{pred}^{tru
 
 具体化图示如下图所示：　　
 
-![yolo](../downloads/object_detection/yolo/yolo1)  
+![yolo](/downloads/object_detection/yolo/yolo1)  
 
 如图下方描述，网络最终输出为一个张量$$SxSx(B*5+C)$$.  
 
@@ -43,7 +43,7 @@ Pr(class_{i}|object)*Pr(object)*IOU_{pred}^{truth}=Pr(class_{i})*IOU_{pred}^{tru
 
 网络结构为自行设计的，其中包含了1x1的卷积层和3x3的卷积层，当然文章还给出了其他版本的网络结构，这里拿大头来讲。　　
 
-![yolo](../downloads/object_detection/yolo/yolo2)  
+![yolo](/downloads/object_detection/yolo/yolo2)  
 
 具体参数如图所示，这里看出来的是，目标检测任务需要细粒度的信息，如高分辨率的图片，因此文章将imagenet model的输入224x224改为448x448,
 以此来使得目标检测更为容易。　　　
@@ -58,7 +58,7 @@ Pr(class_{i}|object)*Pr(object)*IOU_{pred}^{truth}=Pr(class_{i})*IOU_{pred}^{tru
 没检测到目标的部分，损失应该较大程度的来自于目标部分，即压制了那些来自包含目标的grid的梯度，这
 容易使得模型不稳定不易收敛。为解决这个问题，作者加大对bbox回归误差的惩罚，减少loss来自于不包含目标的grid,详细见公式。　　
 
-![yolo](../downloads/object_detection/yolo/yolo3)  
+![yolo](/downloads/object_detection/yolo/yolo3)  
 
 同样的，均方误差对于大的bboxes和小的bboxes,一视同仁，我们知道对于相同的变动，小的bboxes比大的bboxes更为敏感，因此作者目标函数里使用了开方的形式，这样使得大的变化
 不如小的变化造成的影响大。即类似于log函数将图像的暗处显现出来道理一样。

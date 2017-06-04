@@ -11,7 +11,7 @@ data: 2016-10-19
 最近终于入了attention机制的坑了，为什么呢，因为在object detection和各种VQA, 图像生成描述里面，都有这个东西，路子必须广~. 文章[^1]
 主要阐释一种attention based model，用于自动学习图像的描述，即在给定图片的情况下，可以自动生成图像描述。如下图所示：  
 
-![1](../downloads/caption/1.jpg)  
+![1](/downloads/caption/1.jpg)  
 
 这张图片对应描述为:"A woman is throwing a frisbeen in a park"。训练模型的目的就在此。开讲了～　　
 
@@ -34,22 +34,22 @@ data: 2016-10-19
 
 解码阶段，文章使用lstm如获取最后的单词的预测。lstm可如下图所示，　　
 
-![1](../downloads/caption/2.jpg)  
+![1](/downloads/caption/2.jpg)  
 
 话说这张图我一开始看到是拒绝的，总觉得很复杂，后来发现，其实很清晰，大多博客里面都把它写复杂化了。公式还是贴图:  
 
-![1](../downloads/caption/3.jpg)    
+![1](/downloads/caption/3.jpg)    
 
 其中，i,f,o分别对应输入，遗忘，输出，在给定y(embeding vector), z(图片的上下文信息，即关注点)时，可以得到对应i,f,o,然后利用i,f,o
 更新cell,最后利用cell来更新隐藏层到隐藏层的输出。有木有很清晰*_*    
 
 那么问题来了，z从哪里来，文章给出了解释：　　
 
-![1](../downloads/caption/4.jpg)   
+![1](/downloads/caption/4.jpg)   
 
 即在给定输入a和已知隐藏层到隐藏层输出时，通过函数$$f_{att}$$映射得到e,利用e可以得到对应的概率，具体可以如下面代码表示：  
 
-![1](../downloads/caption/5.png)   
+![1](/downloads/caption/5.png)   
 
 上下文z可以通过两种attention方法得到，以上是利用soft attention实现的，$$z_t = \phi({a_i}, {\alpha_i})$$，接下来我们就讲讲attention机制。　　
 

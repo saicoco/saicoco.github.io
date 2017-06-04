@@ -49,7 +49,7 @@ $$Z_{2} = X^{*} + Y^{*} = W_{x}^T + W_{y}^{*}$$
 算法过程大致如上述所述，代码在[这里](https://github.com/saicoco/_practice/tree/master/DCA_Fusion)，而当遇到多个模型时，则利用维度关系，优先对较大维度
 模型进行DCA处理，向小维度靠近，如下图所示：　　
 
-![multimoda](../downloads/DCA/DCA.jpg)  
+![multimoda](/downloads/DCA/DCA.jpg)  
 在每一步中，两个最高秩的特征集合将被融合，如在第一步中，$$X_1, X_2$$具有最高的秩，他俩将与下一个最高秩的特征集融合如$$X_3$$,以此类推。
 
 ### 小结

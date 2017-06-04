@@ -58,39 +58,39 @@ V \approx W \cdot H
 
 而整体矩阵分解过程可以如下图所示：  
 
-![multimoda](../downloads/MCA_NMF/multimoda.jpg)   
+![multimoda](/downloads/MCA_NMF/multimoda.jpg)   
 
 
 
 ### 实验
 文章利用三种不同模型数据：姿态数据，words和语音，利用NMF来寻找三者之间的关联。如下图  
 
-![gesture](../downloads/MCA_NMF/gesture.jpg)   
+![gesture](/downloads/MCA_NMF/gesture.jpg)   
 
 
 
 表示一系列动作，挥舞手臂，走路等姿态，作者通过人工映射的方法，如下表，将动作与语句对应起来：  
 
-![table](../downloads/MCA_NMF/gesture_word.jpg)    
+![table](/downloads/MCA_NMF/gesture_word.jpg)    
 
 
 对于特征提取，gesture提取其二维直方图特征，包含姿态的关节角和速度，如下图所示：  
 
-![dct](../downloads/MCA_NMF/dct.jpg)   
+![dct](/downloads/MCA_NMF/dct.jpg)   
 
 
 
 其中颜色越亮，响应越大。而MCA问题就可以用下图表示：  
 
 
-![class](../downloads/MCA_NMF/class.jpg)  
+![class](/downloads/MCA_NMF/class.jpg)  
 
 
 
 通过训练多模型字典，在测试阶段利用一方数据，得到对应特征在另一模型中的对应特征。关于语音处理，则利用MFCC特征进行聚类，得到对应得
 HAC特征(Histogram of Acoustic Co-occurence)。在训练得到字典后，cross-modal任务可以如下图所示：  
 
-![gesture](../downloads/MCA_NMF/cross.jpg)    
+![gesture](/downloads/MCA_NMF/cross.jpg)    
 
 
 

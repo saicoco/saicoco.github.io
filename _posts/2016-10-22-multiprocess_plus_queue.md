@@ -75,13 +75,13 @@ def generator_queue(generator, max_q_size=10,
 将`generator`传入作为数据读取器，并通过多线程来读取数据，由上述可以看到，创建四个线程，这些线程负责从`generator`中并行读取数据到队列中，
 然后，我们可以从队列中获取数据，效果显而易见，如下图所示：　　
 
-![1](../downloads/pycaffe/multiqueue.png)  
+![1](/downloads/pycaffe/multiqueue.png)  
 
 上图是直接从生成器中读取数据与通过多线程读取数据的耗时对比，在初期读取数据时，由于队列为空，因此耗时较多，但是在后续队列为满时，获取数据则较为迅速。
 但是，不知道是不是错觉，感觉加入数据读取时的多线程，感觉在求导时候速度慢了许多，下图为测试图：　　
 
-![2](../downloads/pycaffe/multisgd.png)
-![2](../downloads/pycaffe/sgd.png)  　　
+![2](/downloads/pycaffe/multisgd.png)
+![2](/downloads/pycaffe/sgd.png)  　　
 
 上面的图为多线程，下面为单线程，看来本来就慢，只不过在数据读取过程稍微快了那么一点点，汗，因为python_layer在c++方面用了多线程，因此变化不是很大。不过在python读取大数据内存不足情况下可以使用这种方法，当然，使用数据库使最好的。　　
 
