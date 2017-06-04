@@ -1,5 +1,5 @@
-title: Stack Problems
-description: My Personal Stack Problems
+title: Notes For DeepLearning
+description: Fix Me
 author: jiajia geng
 github: https://github.com/saicoco
 about: I am freelance developer. Currently doing more in backend, focused in Python and Django.
@@ -34,7 +34,7 @@ social:
 urls:
     - text: About Me
       url: /about/
-    - text: My Projects
+    - text: Projects
       url: /projects/
     - text: XML Feed
       url: /feed.xml
