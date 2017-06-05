@@ -2,9 +2,9 @@ title: Notes For DeepLearning
 description: Fix Me
 author: jiajia geng
 github: https://github.com/saicoco
-about: I am freelance developer. Currently doing more in backend, focused in Python and Django.
-disqus_shortname: stackproblems
-google_analytics: UA-XXXXXXXX-Y
+about: DeepLearning, Python, MachineLearning
+disqus_shortname: saicoco
+# google_analytics: UA-XXXXXXXX-Y
 avatar_url: /static/img/avatar.jpg
 
 enableTags: true
