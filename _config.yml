@@ -1,55 +1,76 @@
-title: Notes For DeepLearning
-description: Fix Me
-author: jiajia geng
-github: https://github.com/saicoco
-about: DeepLearning, Python, MachineLearning
-disqus_shortname: saicoco
-# google_analytics: UA-XXXXXXXX-Y
-avatar_url: /static/img/avatar.jpg
+# Site
+title:              Moon
+bio:                'Minimal, one column jekyll theme.'
+description:        "Moon is a minimal, one column jekyll theme for your blog."
+reading_time:       true
+words_per_minute:   200
+logo:               'assets/img/logo.png'
+background:         'assets/img/placeholder-big.jpg'
+tiled_bg:           false   # Set this true if you want to tile your background image, otherwise it will be covered
+locale:             en_US
+url:                https://taylantatli.github.io/Moon
 
-enableTags: true
-tagarray: []
+# Jekyll
+permalink:          /:title/
+markdown:           kramdown
+highlighter:        rouge
+kramdown:
+  auto_ids:         true
+  footnote_nr:      1
+  entity_output:    as_char
+  toc_levels:       1..6
+  enable_coderay:   false
+mathjax:            true
+sass:
+  sass_dir:         _sass
+  style:            compressed
 
-collections:
-  project:
-    output: true
-    permalink: /project/:path/
+# Comments
+disqus_shortname:   taylantatli
 
-social:
-    # - icon: fa-facebook
-    #   link: "#"
-    # - icon: fa-twitter
-    #   link: "https://twitter.com/agusmakmun6"
-    # - icon: fa-linkedin
-    #   link: "https://www.linkedin.com/in/summonagus"
-    # - icon: fa-stack-exchange
-    #   link: "#"
-    - icon: fa-github
-      link: "https://github.com/saicoco"
+# Social
+# if you don't have any of social below, comment the line.
+#google:
+  #plus:            #username
+  #analytics:
+  #verify:
+  #ad-client:
+  #ad-slot:
+#bing-verify:
+#email:
+twitter:            username
+facebook:           username
+github-url:         username
+#stackoverflow:     123456/username   from a "http://stackoverflow.com/users/123456/username" link
+#linkedin:          username
+#xing:              username
+instagram:          username
+#lastfm:            username
+#tumblr:            username
+#medium:            '@username'
+#pinterest:         username
+#foursquare:        username
+steam:              username
+#dribbble:          username
+#youtube:           username
+#youtube-channel:   channel
+#soundcloud:        username
+#weibo:             username
+#flickr:            username
+#codepen:           username
+#keybase:           username
+#xmpp:              username@server.com
+#hackernews:        username
 
-# share:
-#   twitter_username: agusmakmun6
-#   fb_appid: 1749788565247320
-
-urls:
-    - text: About Me
-      url: /about/
-    - text: Projects
-      url: /projects/
-    - text: XML Feed
-      url: /feed.xml
-
-url: "https://saicoco.github.io"
-baseurl: ""
-paginate: 20
-per_page: 20
-paginate_path: "/page/:num/"
-markdown: kramdown
+# Gems
 gems:
-  - jekyll-paginate
+  - jekyll-mentions
+  - jekyll-feed
+  - jekyll-sitemap
   - jekyll-gist
 
-compress_html:
-  clippings: all
-  comments: ["<!-- ", " -->"]
-  endings: all
+jekyll-mentions:
+    base_url: https://github.com
+
+# Exclude list
+exclude: [README.md, Gemfile, Gemfile.lock, node_modules, gulpfile.js, package.json, _site, src, vendor, CNAME, LICENSE, Rakefile]
