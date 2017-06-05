@@ -1,5 +1,6 @@
-# Bio  
-I am a python developer.  
+## My Blog  
 
-* E-mail: gjj0816@gmail.com
-* Github: saicoco
+Records: 
+* Paper Reading Notes  
+* Stack problems  
+* FrameWorks  
