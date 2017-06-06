@@ -28,7 +28,8 @@ image. 答案是肯定的．　　
 对于一张输入图片$$\mathbf{x}$$而言，通过Image Transform Net得到$$\mathbf{\hat{y}}$$,这里的Transfor Net就
 是我们要学习的模型，这个模型相当于encoder2decoder的结构, 而$$\mathbf{\hat{y}}$$大小应该与VGG输入图片大小一致．
 在得到$$\mathbf{\hat{y}}$$之后，图中的后半部分为loss network, 顾名思义，transform net的损失函数是由后半部分网络
-定义的．　　
+定义的．  
+
 这里分别定义了三种损失, 按照文中说法分别如下：　　
 * Pixel loss  
 * style reconstruction loss  
