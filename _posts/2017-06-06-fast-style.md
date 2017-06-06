@@ -40,7 +40,7 @@ Pixel loss主要为了防止内容的丢失，即需要生成的风格图像与�
 
 $$
 \begin{equation}
-l_{pixel}{\hat{y},y} = \frac{||\hat{y}-y||_{2}^{2}}{CHW}
+l_{pixel}(\hat{y},y) = \frac{||\hat{y}-y||_{2}^{2}}{CHW}
 \end{equation}
 $$    
 
