@@ -24,11 +24,9 @@ image. 答案是肯定的．　　
 ## Architecture  
 模型结构如下图所示：　
 
-{% highlight html %}
 <figure class="third">
 	<img src="/downloads/fast_style/arch.png">
 	<figcaption>模型Pipeline</figcaption>
 </figure>
-{% endhighlight %}　
 
 
