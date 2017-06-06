@@ -89,9 +89,9 @@ $$
 $$   
 
 
-其中$$\lambda_{c, s}$$表示的是content,style的权重，j表示的是VGG的feature层．　　
-可以看到，整个模型的优化就是寻找transform net的权重，使得$$x$$输入之后，得到的$$y$$可以使得整个损失最小．　　
+其中$$\lambda_{c, s}$$表示的是content,style的权重，j表示的是VGG的feature层．可以看到，整个模型的优化就是寻找transform net的权重，使得$$x$$输入之后，得到的$$y$$可以使得整个损失最小．　　  
 
+就写到这里吧，想跑实验的可以戳[faste style transfer](https://github.com/lengstrom/fast-style-transfer)
 
 
 ## References  
