@@ -36,11 +36,13 @@ image. 答案是肯定的．　　
 
 ### Pixel loss  
 Pixel loss主要为了防止内容的丢失，即需要生成的风格图像与目标图像像素匹配时，使用该损失函数．当然，这里公式比较好理解：　　
+
 $$
 \begin{equation}
 l_{pixel}{\hat{y},y} = \frac{||\hat{y}-y||_{2}^{2}}{CHW}
 \end{equation}
-$$  
+$$    
+
 就是对应位置像素的损失．　　
 
 ### Style Reconstruction Loss  
@@ -52,7 +54,7 @@ l_{style}^{f, j}(\hat{y},y)=||G_{j}^{f}(\hat{y} - G_{j}^{f}(y)||_{F}^{2}
 \end{equation}
 $$  
 
-这里的f表示VGG,j对应VGG的提取层，虽然使用F范数，道理和欧式距离类似．G表示gram matrix，对于VGG feature maps,维度通常为$$N\timesH\timesW\timesC$$,求gram matrix时需要reshape为$$N\timesC\timeHW$$, gram matrix求解如下：　　
+这里的f表示VGG,j对应VGG的提取层，虽然使用F范数，道理和欧式距离类似．G表示gram matrix，对于VGG feature maps,维度通常为$$(N, H, W, C)$$,求gram matrix时需要reshape为$$(N, C, HW)$$, gram matrix求解如下：　　
 
 $$
 \begin{equation}
@@ -73,8 +75,9 @@ $$
 典型的欧式距离，这里F表示VGG从输入到feature map的变换．　　
 
 ## Fast Style Transfer  
-介绍完基本部件，该如何style transfer. 归根到底，只要学习好transform net,对于一张图片，我们就可以得到对应的风格化图片．　　
+介绍完基本部件，该如何style transfer. 归根到底，只要学习好transform net,对于一张图片，我们就可以得到对应的风格化图片．
 其实这里也暗含一点，faste style transfer[^2]只能学习一种风格，即一种风格对应一个模型．　　
+
 对于CNN来说，低层包含像素信息较多，高层则像素信息损失严重，因为pooling的存在，高层视野较为开阔，因此高层包含较多语音信息，
 可以理解为高层的风格信息较多．因此文章做了想Gatys et al.[^1]的做法，对于不同层设置不同的权重，低层的内容重构损失设置较大
 权重，高层风格重构损失设置较大的权重，也就是style和centent的trade-off. 最终的损失函数如下：　　
@@ -84,6 +87,8 @@ $$
 \hat{y} = \arg\min_{y} \lambda_{c}l_{feat}^{F,j}(y, y_c) + \lambda_{s}l_{style}^{f,j}(y, y_s) + \lambda_{TV}l_{TV}
 \end{equation}
 $$   
+
+
 其中$$\lambda_{c, s}$$表示的是content,style的权重，j表示的是VGG的feature层．　　
 可以看到，整个模型的优化就是寻找transform net的权重，使得$$x$$输入之后，得到的$$y$$可以使得整个损失最小．　　
 
