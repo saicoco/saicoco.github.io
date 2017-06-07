@@ -69,11 +69,11 @@ $$
 
 $$
 \begin{equation}
-l_{feat}^{f, j}(\hat{y},y)=\frac{1}{C_{j}H_{j}W_{j}}||F_{j}^{f}(\hat{y} - F_{j}^{f}(y)||_{2}^{2}
+l_{feat}^{f, j}(\hat{y},y)=\frac{1}{C_{j}H_{j}W_{j}}||F_{j}^{f}(\hat{y}) - F_{j}^{f}(y)||_{2}^{2}
 \end{equation}
 $$  
 
-典型的欧式距离，这里F表示VGG从输入到feature map的变换．　　
+典型的欧式距离，这里F表示VGG从输入到feature map的变换．如图中所示，content loss是由transfer net得到的图像与content image输入vgg后，对应relu层像素损失作为content loss,这里的content imageq其实和transefer net的输入是同一张图片，transfer net得到的结果叫perceptual image,即包好较多语义信息，像素上可能有损失，因此需要content loss来约束避免得到的图像内容丢失．　　
 
 ## Fast Style Transfer  
 介绍完基本部件，该如何style transfer. 归根到底，只要学习好transform net,对于一张图片，我们就可以得到对应的风格化图片．
