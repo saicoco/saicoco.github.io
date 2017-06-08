@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: page
 title: Speaker Identification的思考
 tag: thinking
 category: thinking

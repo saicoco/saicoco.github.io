@@ -1,6 +1,6 @@
 ---
 title: "Mxnet学习笔记(3)--自定义Op"
-layout: post
+layout: page
 date: 2017-01-13
 tag: mxnet
 blog: true

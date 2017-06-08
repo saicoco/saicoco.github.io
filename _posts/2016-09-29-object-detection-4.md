@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: page
 title: 目标检测--Faster RCNN2
 tag: object detection
 category: object_detection

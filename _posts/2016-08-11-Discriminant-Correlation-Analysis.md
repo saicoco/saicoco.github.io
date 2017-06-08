@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: page
 title: 论文笔记--Discriminant Correlation Analysis
 date: 2016-08-11
 tag: paper

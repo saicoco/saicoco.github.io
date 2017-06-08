@@ -1,6 +1,6 @@
 ---
 title: "由MCB想到的"
-layout: post
+layout: page
 date: 2017-01-09
 tag: thinking
 blog: true

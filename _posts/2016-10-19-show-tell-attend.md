@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: page
 title: Show, Attend and Tell, Neural Image Caption Generation with Visual Attention
 tag: paper
 category: paper

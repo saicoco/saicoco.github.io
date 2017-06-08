@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: page
 title: tensorflow使用笔记(2)--rnn_cell
 tag: tensorflow
 image: /downloads/tf/image_header.png

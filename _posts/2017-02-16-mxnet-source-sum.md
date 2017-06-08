@@ -1,6 +1,6 @@
 ---
 title: "Mxnet学习笔记(4)--operator源码之基类Operator"
-layout: post
+layout: page
 date: 2017-02-16
 tag: mxnet
 blog: true

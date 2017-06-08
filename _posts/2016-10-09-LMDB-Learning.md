@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: page
 title: 利用lmdb制作自己的数据库
 tag: caffe
 category: caffe

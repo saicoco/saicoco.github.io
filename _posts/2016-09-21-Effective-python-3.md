@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: page
 title: Effective Python metaclass
 tag: python
 category: python

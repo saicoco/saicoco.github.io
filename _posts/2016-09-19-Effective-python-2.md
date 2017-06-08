@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: page
 title: Effective Python 31
 tag: python
 category: python

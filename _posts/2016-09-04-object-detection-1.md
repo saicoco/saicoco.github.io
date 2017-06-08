@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: page
 title: 目标检测--非极大值抑制
 tag:
 - object detection

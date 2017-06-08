@@ -1,6 +1,6 @@
 ---
 title: image caption中image feature的位置
-layout: post
+layout: page
 date: 2017-04-06
 categories: 
 - paper_reading

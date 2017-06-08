@@ -1,6 +1,6 @@
 ---
 title: "Beam Search"
-layout: post
+layout: page
 date: 2017-03-13
 tag: Algorithm
 blog: true

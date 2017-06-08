@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: page
 title: 论文笔记--DeepLearning face Recognition
 tag: paper
 category: paper

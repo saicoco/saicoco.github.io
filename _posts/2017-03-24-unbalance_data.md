@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: page
 title: 样本不均衡问题
 tag: thinking
 categories: 
