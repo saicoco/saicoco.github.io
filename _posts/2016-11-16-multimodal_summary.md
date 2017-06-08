@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: post
 title: ubuntu安装matlab2015b
 tag: ubuntu
 category: software

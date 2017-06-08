@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: post
 title: Python generator 在读取大数据时的应用
 tag: python
 category: python

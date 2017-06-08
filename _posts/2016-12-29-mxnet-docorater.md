@@ -1,6 +1,6 @@
 ---
 title: "Mxnet学习笔记(1)--源码中的装饰器理解"
-layout: page
+layout: post
 date: 2016-12-28
 image: /downloads/mxnet_register/register.png
 headerImage: true

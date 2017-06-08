@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: post
 title: Visually Indicated Sounds
 tag: paper
 category: paper

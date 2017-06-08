@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: post
 title: 论文笔记--Multimodal Concept Acquisition with Non-Negative Matrix Factorization
 tag: paper   
 category: paper

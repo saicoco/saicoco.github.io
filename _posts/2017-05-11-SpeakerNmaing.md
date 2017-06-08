@@ -1,6 +1,6 @@
 ---
 title: "Speaker Naming"
-layout: page
+layout: post
 date: 2017-05-11
 tag: speaker naming
 blog: false

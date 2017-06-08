@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: post
 title: Non-Negative Matrix Factorization
 tag: paper
 category: paper

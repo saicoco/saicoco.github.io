@@ -1,6 +1,6 @@
 ---
 title: "Mxnet学习笔记(2)--自定义DataIter"
-layout: page
+layout: post
 date: 2017-01-12
 tag: mxnet
 blog: true

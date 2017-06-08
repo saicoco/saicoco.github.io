@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: post
 title: 论文笔记--Learning Deep Features for Discriminative Localization
 tag:
 - paper

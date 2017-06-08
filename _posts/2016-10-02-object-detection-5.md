@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: post
 title: 目标检测--YOLO
 tag: object detection
 category: object_detection

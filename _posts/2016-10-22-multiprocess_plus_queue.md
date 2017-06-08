@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: post
 title: Python 多线程队列在读取大数据时的应用
 tag: python
 category: python
