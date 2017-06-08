@@ -19,14 +19,14 @@ kramdown:
   footnote_nr:      1
   entity_output:    as_char
   toc_levels:       1..6
-  enable_coderay:   false
+  enable_coderay:   true
 mathjax:            true
 sass:
   sass_dir:         _sass
   style:            compressed
 
 # Comments
-disqus_shortname:   saicoco
+# disqus_shortname:   saicoco
 
 # Social
 # if you don't have any of social below, comment the line.
