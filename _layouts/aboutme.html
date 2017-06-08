@@ -33,22 +33,6 @@ layout: compress
                     </a>
                 </div>
                 {{ content }}
-                <HR style="FILTER: progid:DXImageTransform.Microsoft.Glow(color=#987cb9,strength=10)" width="100%" color=#987cb9 SIZE=1>
-                <div id="container"></div>
-                <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-                <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-                <script>
-                    var gitment = new Gitment({
-                        id: page.title, // 可选。默认为 location.href
-                        owner: 'saicoco',
-                        repo: 'saicoco.github.io',
-                        oauth: {
-                            client_id: '881394a49638b1f2ac13',
-                            client_secret: 'cbc5f6c59ae8370a1871d17f0726fcafd8e4e8cd',
-                        },
-                    })
-                    gitment.render('container')
-                </script>
                 <div class="entry-meta">
                 {% include meta.html %}
                 </div>

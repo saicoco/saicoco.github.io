@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: aboutme
 title: About Me
 tags: about
 date: 2017-06-06
