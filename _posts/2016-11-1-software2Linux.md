@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: post
 title: 一些好用的ubuntu软件
 tag: ubuntu
 categories: 

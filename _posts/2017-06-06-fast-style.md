@@ -1,6 +1,6 @@
 ---
 title: Fast Style Transfer
-layout: page
+layout: post
 date: 2017-06-06
 categories: 
 - paper_reading
