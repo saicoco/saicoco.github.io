@@ -33,7 +33,9 @@ layout: compress
                     </a>
                 </div>
                 {{ content }}
-                <HR style="FILTER: progid:DXImageTransform.Microsoft.Glow(color=#987cb9,strength=10)" width="100%" color=#987cb9 SIZE=1>
+                <div class="entry-meta">
+                {% include meta.html %}
+                </div>
                 <div id="container"></div>
                 <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
                 <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
@@ -49,9 +51,6 @@ layout: compress
                     })
                     gitment.render('container')
                 </script>
-                <div class="entry-meta">
-                {% include meta.html %}
-                </div>
             </div>
         </div>
         {% if page.comments and site.disqus_shortname %}<section id="disqus_thread" class="animated fadeInUp"></section><!-- /#disqus_thread -->{% endif %}
