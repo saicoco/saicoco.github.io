@@ -24,27 +24,28 @@
                     </a>
                 </div>
                 {{ content }}
+                <div id="container"></div>
+                <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+                <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+                <script>
+                    var gitment = new Gitment({
+                        // id: '页面 ID', // 可选。默认为 location.href
+                        owner: 'saicoco',
+                        repo: 'saicoco.github.io',
+                        oauth: {
+                            client_id: '881394a49638b1f2ac13',
+                            client_secret: 'cbc5f6c59ae8370a1871d17f0726fcafd8e4e8cd',
+                        },
+                    })
+                    gitment.render('container')
+                </script>
             </div>
         </div>
         {% if page.comments and site.disqus_shortname %}
         <section id="disqus_thread" class="animated fadeInUp"></section>
         <!-- /#disqus_thread -->{% endif %}
 
-        <div id="container"></div>
-        <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-        <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-        <script>
-            var gitment = new Gitment({
-                // id: '页面 ID', // 可选。默认为 location.href
-                owner: 'saicoco',
-                repo: 'saicoco.github.io',
-                oauth: {
-                    client_id: '881394a49638b1f2ac13',
-                    client_secret: 'cbc5f6c59ae8370a1871d17f0726fcafd8e4e8cd',
-                },
-            })
-            gitment.render('container')
-        </script>
+
     </header>
     {% include scripts.html %} {% if site.mathjax == true %}
     <!-- MathJax -->
