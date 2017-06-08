@@ -24,6 +24,7 @@
                     </a>
                 </div>
                 {{ content }}
+                {% if page.comments%}
                 <HR style="FILTER: progid:DXImageTransform.Microsoft.Glow(color=#987cb9,strength=10)" width="100%" color=#987cb9 SIZE=1>
                 <div id="container"></div>
                 <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
@@ -40,6 +41,7 @@
                     })
                     gitment.render('container')
                 </script>
+                {% endif %}
             </div>
         </div>
         {% if page.comments and site.disqus_shortname %}
