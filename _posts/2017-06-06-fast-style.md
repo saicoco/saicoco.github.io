@@ -34,6 +34,7 @@ image. 答案是肯定的．　　
 * Pixel loss  
 * style reconstruction loss  
 * feature reconstruction loss  
+* Total variation loss
 
 ### Pixel loss  
 Pixel loss主要为了防止内容的丢失，即需要生成的风格图像与目标图像像素匹配时，使用该损失函数．当然，这里公式比较好理解：　　
@@ -75,6 +76,26 @@ $$
 
 典型的欧式距离，这里F表示VGG从输入到feature map的变换．如图中所示，content loss是由transfer net得到的图像与content image输入vgg后，对应relu层像素损失作为content loss,这里的content imageq其实和transefer net的输入是同一张图片，transfer net得到的结果叫perceptual image,即包好较多语义信息，像素上可能有损失，因此需要content loss来约束避免得到的图像内容丢失．　　
 
+### Total variation loss  
+[Total Variation](https://en.wikipedia.org/wiki/Total_variation_denoising)可以看这里，主要用于信号降噪，对于图像而言，公式如下：　
+
+$$
+\begin{equation}
+loss_{tv}{y} = \sum_{i, j}\sqrt{|y_{i+1, j} - y_{i,j}|^{2} + |y_{i, j+1} - y_{i,j}|^{2}}
+\end{equation}
+$$  
+上述$$y$$就是transfer net的输出，为了防止噪声引入loss network,加入这个降噪操作．当然，上面式子不可导，因此可以使用下面简化版，容易优化．　　
+
+$$
+\begin{equation}
+loss_{tv}{y} = \sum_{i, j}\sqrt{|y_{i+1, j} - y_{i,j}|^{2}} + \sqrt{|y_{i, j+1} - y_{i,j}|^{2}} = \sum_{i, j}|y_{i+1, j} - y_{i,j}| + |y_{i, j+1} - y_{i,j}|
+\end{equation}
+$$  
+
+而上面式子的求解过程可以看成卷积形式，即一阶差分．　　
+
+
+
 ## Fast Style Transfer  
 介绍完基本部件，该如何style transfer. 归根到底，只要学习好transform net,对于一张图片，我们就可以得到对应的风格化图片．
 其实这里也暗含一点，faste style transfer[^2]只能学习一种风格，即一种风格对应一个模型．　　
@@ -85,14 +106,19 @@ $$
 
 $$
 \begin{equation}
-\hat{y} = \arg\min_{y} \lambda_{c}l_{feat}^{F,j}(y, y_c) + \lambda_{s}l_{style}^{f,j}(y, y_s) + \lambda_{TV}l_{TV}
+\hat{y} = \arg\min_{y} \lambda_{c}l_{feat}^{F,j}(y, y_c) + \lambda_{s}l_{style}^{f,j}(y, y_s) + \lambda_{tv}loss_{tv}
 \end{equation}
 $$   
 
 
 其中$$\lambda_{c, s}$$表示的是content,style的权重，j表示的是VGG的feature层．可以看到，整个模型的优化就是寻找transform net的权重，使得$$x$$输入之后，得到的$$y$$可以使得整个损失最小．　　  
 
-就写到这里吧，想跑实验的可以戳[faste style transfer](https://github.com/lengstrom/fast-style-transfer)
+## 实现技巧　　
+整个网络的实现可以通按照流程图来实现，tensorflow较好实现，mxnet的实现则比较难受．重点就在于三个损失函数如何回传梯度到transfer net中．　
+对于content loss和style loss, 差可以通过做差得到，差的平方可以用作求损失，差可以作为梯度回传.对于tv_loss,本身就是一阶梯度，因此它对输入的梯度就是二阶梯度，可以用二阶梯度算子实现．
+
+
+就写到这里吧，想跑实验的可以戳[faste style transfer](https://github.com/lengstrom/fast-style-transfer)(ps: tensorflow版本)，　mxnet版本在[这里](https://github.com/zhaw/neural_style/tree/master/perceptual),写的真好啊．
 
 
 ## References  
