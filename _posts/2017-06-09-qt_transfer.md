@@ -24,7 +24,7 @@ PyQt快速制作桌面界面需要以下几步：　　
 ### 设计UI  
 通常，UI设计可以有两种方式，一种是纯手coding实现各种功能，另外一种就是我要写的这种，对于我这中小白还是比较好使的．如下图所示，就是工作区：　　
 
-![ui](/downloads/qt/1.jpg)  
+![ui](/downloads/qt/1.png)  
 
 这里使用的是QTcreator,首先创建Qt工程，选择界面设计类，这样得到的工程文件中包含.ui文件，这样我们就可以使用"设计"选项来编辑UI文件．如上图所示，
 主要分为五个区域，左边区域为组件区：按钮，滚动条等都在这里;中间为UI设计区，右边和右下角为属性，包括名字等各种属性，底部为按钮等组件动作的设置区．
@@ -66,6 +66,7 @@ class neural_style_transfer(QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):
         super(neural_style_transfer, self).__init__(parent)
         self.setupUi(self)
+        # 添加按钮响应
         QObject.connect(self.shanshui, SIGNAL("clicked()"), self.fshanshui)
         QObject.connect(self.youhua, SIGNAL("clicked()"), self.fyouhua)
         QObject.connect(self.shuimohua, SIGNAL("clicked()"), self.fshuimohua)
@@ -97,13 +98,15 @@ class neural_style_transfer(QMainWindow, Ui_MainWindow):
     def get_content_slider(self):
         value =  self.contentSlider.value()
         self.content_weight = value * 0.1
-
+    
+    # 获取文件对话框
     def show_contDialog(self):
         filename = QFileDialog.getOpenFileName(self, 'open file', './')
         assert filename.split('.')[-1] in ['jpg', 'png']
         self.content_img = str(filename)
         self.content_label.setPixmap(QPixmap(filename))
-
+    
+    # style transfer, 代码来自tensorflow实现fast0style-transfer
     def transfer(self):
         if not os.path.isdir(self.out_path):
             os.mkdir(self.out_path)
