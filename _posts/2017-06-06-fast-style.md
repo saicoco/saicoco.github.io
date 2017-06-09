@@ -30,7 +30,7 @@ image. 答案是肯定的．　　
 在得到$$\mathbf{\hat{y}}$$之后，图中的后半部分为loss network, 顾名思义，transform net的损失函数是由后半部分网络
 定义的．  
 
-这里分别定义了三种损失, 按照文中说法分别如下：　　
+这里分别定义了四种损失, 按照文中说法分别如下：　　
 * Pixel loss  
 * style reconstruction loss  
 * feature reconstruction loss  
