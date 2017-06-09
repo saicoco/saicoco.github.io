@@ -41,7 +41,7 @@ pyuic4 -o ui.py mainwindow.ui
 
 ### 实现功能　　
 
-线上一下我们的界面图：　　
+先上一下我们的界面图：　　
 
 ![3](/downloads/qt/3.jpg)  
 
