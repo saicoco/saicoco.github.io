@@ -11,7 +11,7 @@ author: karl
 description: Scene Text Detection
 header:
    image_fullwidth: "../downloads/incepttext/1.png"
-feature: /downloads/incepttext/1.png
+feature: ../downloads/incepttext/1.png
 ---  
 
 InceptText主要提出了基于[FCIS][^1]改进的场景文字检测算法，目的是为了解决任意方向文字检测的问题。文章提出了Deformable PSROI和Inception Module with Deformable Convolution结构来
