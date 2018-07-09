@@ -1,6 +1,5 @@
 ---
-title: TextSnake, A Flexible Representation for
-Detecting Text of Arbitrary Shapes
+title: TextSnake, A Flexible Representation for Detecting Text of Arbitrary Shapes
 layout: post
 date: 2018-07-09
 categories: 
