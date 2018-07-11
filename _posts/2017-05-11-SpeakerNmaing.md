@@ -3,8 +3,8 @@ title: "Speaker Naming"
 layout: post
 date: 2017-05-11
 tag: speaker naming
-blog: false
-project: true
+blog: true
+project: false
 star: false
 author: karl
 category: speaker naming
