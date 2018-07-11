@@ -1,6 +1,6 @@
 ---
 layout: project
-title: All Projects
+title: Life is So Beautiful
 excerpt: "A List of Projects"
 comments: false
 ---
