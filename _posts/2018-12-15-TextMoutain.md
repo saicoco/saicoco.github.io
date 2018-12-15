@@ -11,6 +11,7 @@ author: karl
 description: Scene Text Detection
 header:
    image_fullwidth: "../downloads/tm/1.png"
+feature: "../downloads/tm/headbg.png"
 ---  
 
 ## 前言  
