@@ -9,6 +9,9 @@ blog: true
 start: true
 author: karl
 description: Scene Text Detection
+header:
+   image_fullwidth: "../downloads/tm/Jietu20190118-194338@2x.jpg"
+feature: "../downloads/tm/Jietu20190118-194338@2x.jpg"
 --- 
 
 ## 前言
@@ -16,7 +19,8 @@ description: Scene Text Detection
 
 ## 文章简介
 最近出了一篇名字为<MSR: Multi-Scale Shape Regression for Scene Text
-Detection>的文章，其大致检测过程如下：
+Detection>的文章，其大致检测过程如下：  
+
 ![img](../downloads/tm/Jietu20190118-180657@2x.jpg)
 
 简单来说，对于输入的一张图，首先检测其文本区域，同时对于文本区域内的没一个像素，分别预测到其最近边缘点的偏移，最终会得到如中间一列的红色轮廓，接着利用alpha-shape或者concave-hull算法可以得到最终搞得轮廓图。
