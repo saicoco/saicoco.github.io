@@ -1,11 +1,11 @@
 # Site
-title:              Gengjiajia's Blog
-bio:                'Stay alive'
-description:        "For mind."
+title:              The Road to Heaven
+bio:                'Keep moving'
+description:        "Keep moving."
 reading_time:       true
 words_per_minute:   200
 logo:               'assets/img/me.jpg'
-background:         'assets/img/bg.png'
+background:         'assets/img/bg.jpg'
 tiled_bg:           false   # Set this true if you want to tile your background image, otherwise it will be covered
 locale:             zn_CH
 url:                https://saicoco.github.io
