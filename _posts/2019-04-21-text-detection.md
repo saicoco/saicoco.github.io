@@ -13,7 +13,12 @@ description: Scene Text Recognition
 
 ## 前言  
 工作后没有大片的时间可以用来完整的写一篇博客，因此计划使用简要记录的方式对阅读的论文进行简要记录,同时以月份的形式进行记录，这样的记录方式一是可以达到快速回顾、同时可以方面后续拓展，方面后续翻看。希望自己可以坚持写下去。  
-### [Character Region Awareness for Text Detection](https://www.arxiv-vanity.com/papers/1904.01941/) 
+
+### 文字检测  
+
+
+
+#### [Character Region Awareness for Text Detection](https://www.arxiv-vanity.com/papers/1904.01941/) 
 * 核心思想
     * 提出单字分割以及单字间分割的方法，类似分割版本的seglink
     * 提出如何利用char level合成数据得到真实数据的char box 标注的弱监督方法
@@ -35,7 +40,11 @@ description: Scene Text Recognition
 
 
 
-### [Livra R-CNN](<https://www.arxiv-vanity.com/papers/1904.02701/)
+### 目标检测  
+
+
+
+#### [Livra R-CNN](<https://www.arxiv-vanity.com/papers/1904.02701/)
 
 - 核心思想
 - 细节
