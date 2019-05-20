@@ -87,3 +87,12 @@ link需要预测准确，如果link出现错误，则容易导致segments的归�
 
 ![img](../downloads/zzj/Jietu20190422-135618@2x.jpg)
 
+### CTPN后处理算法  
+
+![image-20190517172227383](../downloads/poster/ctpn.jpg)
+
+精髓在于：
+
+- 水平行的搜索，确认长连接
+- 构建图矩阵
+- 遍历图矩阵得到文本行
