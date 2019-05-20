@@ -96,3 +96,75 @@ link需要预测准确，如果link出现错误，则容易导致segments的归�
 - 水平行的搜索，确认长连接
 - 构建图矩阵
 - 遍历图矩阵得到文本行
+
+### EAST后处理算法
+
+
+
+```python
+import numpy as np
+from shapely.geometry import Polygon
+
+
+def intersection(g, p):
+    g = Polygon(g[:8].reshape((4, 2)))
+    p = Polygon(p[:8].reshape((4, 2)))
+    if not g.is_valid or not p.is_valid:
+        return 0
+    inter = Polygon(g).intersection(Polygon(p)).area
+    union = g.area + p.area - inter
+    if union == 0:
+        return 0
+    else:
+        return inter/union
+
+
+def weighted_merge(g, p):
+    g[:8] = (g[8] * g[:8] + p[8] * p[:8])/(g[8] + p[8])
+    g[8] = (g[8] + p[8])
+    return g
+
+
+def standard_nms(S, thres):
+    order = np.argsort(S[:, 8])[::-1]
+    keep = []
+    while order.size > 0:
+        i = order[0]
+        keep.append(i)
+        ovr = np.array([intersection(S[i], S[t]) for t in order[1:]])
+
+        inds = np.where(ovr <= thres)[0]
+        order = order[inds+1]
+
+    return S[keep]
+
+
+def nms_locality(polys, thres=0.3):
+    '''
+    locality aware nms of EAST
+    :param polys: a N*9 numpy array. first 8 coordinates, then prob
+    :return: boxes after nms
+    '''
+    S = []
+    p = None
+    for g in polys:
+        if p is not None and intersection(g, p) > thres:
+            p = weighted_merge(g, p)
+        else:
+            if p is not None:
+                S.append(p)
+            p = g
+    if p is not None:
+        S.append(p)
+
+    if len(S) == 0:
+        return np.array([])
+    return standard_nms(np.array(S), thres)
+
+```
+
+主要步骤：
+
+- 首先将每个score_map上属于文本区域的点，预测的box得到
+- 判断每一个box的iou大于一定的阈值，如果超过，则进行合并；反之归为下一个文本区域
+- 重复合并，最后对得到的box进行nms得到最终的检测结果。
