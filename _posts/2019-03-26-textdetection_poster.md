@@ -18,6 +18,14 @@ description: Scene Text Detection
 
 - TextField
 
+- CTPN
+
+- EAST
+
+- Pixelink
+
+- PSENet
+
   
 
 ### Seglink后处理  
@@ -168,3 +176,178 @@ def nms_locality(polys, thres=0.3):
 - 首先将每个score_map上属于文本区域的点，预测的box得到
 - 判断每一个box的iou大于一定的阈值，如果超过，则进行合并；反之归为下一个文本区域
 - 重复合并，最后对得到的box进行nms得到最终的检测结果。
+
+### Pixellink后处理 
+
+
+
+```python
+
+def decode_image_by_join(pixel_scores, link_scores, 
+                 pixel_conf_threshold, link_conf_threshold):
+    pixel_mask = pixel_scores >= pixel_conf_threshold
+    link_mask = link_scores >= link_conf_threshold
+    points = zip(*np.where(pixel_mask))
+    h, w = np.shape(pixel_mask)
+    group_mask = dict.fromkeys(points, -1)
+    def find_parent(point):
+        return group_mask[point]
+        
+    def set_parent(point, parent):
+        group_mask[point] = parent
+        
+    def is_root(point):
+        return find_parent(point) == -1
+    
+    def find_root(point):
+        root = point
+        update_parent = False
+        while not is_root(root):
+            root = find_parent(root)
+            update_parent = True
+        
+        # for acceleration of find_root
+        if update_parent:
+            set_parent(point, root)
+            
+        return root
+        
+    def join(p1, p2):
+        root1 = find_root(p1)
+        root2 = find_root(p2)
+        
+        if root1 != root2:
+            set_parent(root1, root2)
+        
+    def get_all():
+        root_map = {}
+        def get_index(root):
+            if root not in root_map:
+                root_map[root] = len(root_map) + 1
+            return root_map[root]
+        
+        mask = np.zeros_like(pixel_mask, dtype = np.int32)
+        for point in points:
+            point_root = find_root(point)
+            bbox_idx = get_index(point_root)
+            mask[point] = bbox_idx
+        return mask
+    
+    # join by link
+    for point in points:
+        y, x = point
+        neighbours = get_neighbours(x, y)
+        for n_idx, (nx, ny) in enumerate(neighbours):
+            if is_valid_cord(nx, ny, w, h):
+#                 reversed_neighbours = get_neighbours(nx, ny)
+#                 reversed_idx = reversed_neighbours.index((x, y))
+                link_value = link_mask[y, x, n_idx]# and link_mask[ny, nx, reversed_idx]
+                pixel_cls = pixel_mask[ny, nx]
+                if link_value and pixel_cls:
+                    join(point, (ny, nx))
+   
+    mask = get_all()
+    return mask
+
+
+```
+
+核心步骤：
+
+- 首先通过阈值过滤得到link map和score map
+- 文本区域中的点，进行8邻域或者4邻域的探索：
+  - 如果邻域中存在与其来自同一父节点的，则进行合并
+- 最后通过cv2.minAreaRect获得最小外界矩形
+
+后处理的方式，决定了pixellink无法很好的处理大间隔文本。而邻域的处理方式，仅仅考虑很近的文本，因此当文本间隙比较大或者包含较多背景信息导致的分割不准，会导致后续文本的区域的合并。这里其实主要依赖分割结果的好坏。解决这个问题可以从以下入手：
+
+- 构造标签，让区域之间的像素存在较强的关联性，以保证后续后处理阶段的join；这转化为如何充分挖掘像素之间的关联性问题
+- 增强网络，提升分割的性能
+
+以上可以认为是一个点，像素之间关联性的提升会带来分割性能的提升，反过来分割性能提升，势必提升了像素之间的关联性。
+
+### PSENet
+
+![image-20190521195756330](../downloads/poster/pse.png)
+
+步骤如下：
+
+1. 进行区域合并，得到对应的联通区域，并给定对应的标记label，将其入队列
+2. 出队列，得到某一个文本，然后对其周围像素进行搜索，x进行前后搜索，y进行上下搜索，如果label为文本区域，则标记为文本
+3. 最后得到最终的文本区域。
+
+代码：
+
+```c++
+void growing_text_line(vector<Mat> &kernals, vector<vector<int>> &text_line, float min_area) {
+        
+        Mat label_mat;
+        int label_num = connectedComponents(kernals[kernals.size() - 1], label_mat, 4);
+
+        // cout << "label num: " << label_num << endl;
+        
+        int area[label_num + 1];
+        memset(area, 0, sizeof(area));
+        for (int x = 0; x < label_mat.rows; ++x) {
+            for (int y = 0; y < label_mat.cols; ++y) {
+                int label = label_mat.at<int>(x, y);
+                if (label == 0) continue;
+                area[label] += 1;
+            }
+        }
+
+        queue<Point> queue, next_queue;
+        for (int x = 0; x < label_mat.rows; ++x) {
+            vector<int> row(label_mat.cols);
+            for (int y = 0; y < label_mat.cols; ++y) {
+                int label = label_mat.at<int>(x, y);
+                
+                if (label == 0) continue;
+                if (area[label] < min_area) continue;
+                
+                Point point(x, y);
+                queue.push(point);
+                row[y] = label;
+            }
+            text_line.emplace_back(row);
+        }
+
+        // cout << "ok" << endl;
+        
+        int dx[] = {-1, 1, 0, 0};
+        int dy[] = {0, 0, -1, 1};
+
+        for (int kernal_id = kernals.size() - 2; kernal_id >= 0; --kernal_id) {
+            while (!queue.empty()) {
+                Point point = queue.front(); queue.pop();
+                int x = point.x;
+                int y = point.y;
+                int label = text_line[x][y];
+                // cout << text_line.size() << ' ' << text_line[0].size() << ' ' << x << ' ' << y << endl;
+
+                bool is_edge = true;
+                for (int d = 0; d < 4; ++d) {
+                    int tmp_x = x + dx[d];
+                    int tmp_y = y + dy[d];
+
+                    if (tmp_x < 0 || tmp_x >= (int)text_line.size()) continue;
+                    if (tmp_y < 0 || tmp_y >= (int)text_line[1].size()) continue;
+                    if (kernals[kernal_id].at<char>(tmp_x, tmp_y) == 0) continue;
+                    if (text_line[tmp_x][tmp_y] > 0) continue;
+
+                    Point point(tmp_x, tmp_y);
+                    queue.push(point);
+                    text_line[tmp_x][tmp_y] = label;
+                    is_edge = false;
+                }
+
+                if (is_edge) {
+                    next_queue.push(point);
+                }
+            }
+            swap(queue, next_queue);
+        }
+    } 
+```
+
+由后处理可以看出，最后的结果依赖kernel的预测，kernel预测准确，合并过程才不会出现错误；另外与pixellink类似，基于相邻像素进行探索，如果文本存在明显的间隔或者包含背景信息较多时，容易导致分割map的不够精准，进而导致后处理无法很好的得到文本区域，进而检测失败。
