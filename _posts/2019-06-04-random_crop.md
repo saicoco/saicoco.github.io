@@ -15,7 +15,7 @@ description: Scene Text Recognition
 
 
 
-## 前言
+
 
 EAST中的图片随机裁剪，核心思想是保证每一个文本区域不被切断，即在进行随机裁剪时，保证文字区域不被切断。  
 
