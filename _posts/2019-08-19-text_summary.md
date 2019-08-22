@@ -55,9 +55,9 @@ description: Scene Text Detection
 
 two-stage算法的典型代表便是基于maskrcnn的改进，这里拿如下两种算法进行分析：
 
-|                  Box_Discretization_Network                  |                             PMTD                             |
-| :----------------------------------------------------------: | :----------------------------------------------------------: |
-| ![img](https://media.arxiv-vanity.com/render-output/1089570/x1.png) | ![img](https://media.arxiv-vanity.com/render-output/1182197/x3.png) |
+|                  Box_Discretization_Network                  |                   PMTD                   |
+| :----------------------------------------------------------: | :--------------------------------------: |
+| ![img](https://media.arxiv-vanity.com/render-output/1089570/x1.png) | ![img](/Users/gengjiajia/Desktop/x3.png) |
 
 我们知道MaskRCNN的回归方式为，roi_feature进行编码，预测类别，bbox以及分割图。但是由于文本的宽高比变化剧烈，长文本会无法cover。因此以上两种算法对maskrcnn的结果进行微调。即去预测辅助定位的信息。BDN将ROIAlign得到的特征分别预测三种信息，分别为水平方向的响应值，竖直方向的响应值，以及xy的匹配方式。这里具体的方式可以阅读论文参看细节。为什么这么做管用？这里的分类的目标值为bbox定点与中心点的平均，如(xmin + xmean) / 2, 将四个顶点与中心点关联，同时这个预测值往往会落在roi范围内，避免了直接回归很远的位置，利用现有范围内的特征预测得到范围外的值。最终在得出检测结果是，进行qbox的校准。
 
